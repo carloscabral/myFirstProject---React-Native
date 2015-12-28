@@ -7,6 +7,8 @@ var {
   StyleSheet,
   Text,
   View,
+  TouchableHighlight,
+  AlertIOS,
 } = React;
 
 var Tableless = React.createClass({
@@ -17,6 +19,14 @@ var Tableless = React.createClass({
         <Text style={styles.myText}>
           Hello, Tableless!
         </Text>
+        <TouchableHighlight onPress={() => AlertIOS.alert(
+            'Simple Title',
+            'Hi, I am a native iOS alert component in action.'
+          )}>
+          <View style={styles.button}>
+            <Text style={{color: '#fff'}}>An Alert Message</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -38,7 +48,12 @@ var styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
     color: 'green',
-  }
+  },
+  button: {
+    backgroundColor: 'lightblue',
+    padding: 20,
+    borderRadius: 5,
+  },
 
 })
 
