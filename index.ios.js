@@ -1,7 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
+
 'use strict';
 
 var React = require('react-native');
@@ -12,19 +9,13 @@ var {
   View,
 } = React;
 
-var MyFirstProject = React.createClass({
+var Tableless = React.createClass({
+
   render: function() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+      <View style={styles.container} >
+        <Text style={styles.myText}>
+          Hello, Tableless!
         </Text>
       </View>
     );
@@ -32,22 +23,24 @@ var MyFirstProject = React.createClass({
 });
 
 var styles = StyleSheet.create({
+
   container: {
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
+  myText: {
+    borderWidth: 2,
+    borderColor: 'ff0000',
+    borderRadius: 4,
     textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+    padding: 10,
+    marginBottom: 10,
+    color: 'green',
+  }
 
-AppRegistry.registerComponent('MyFirstProject', () => MyFirstProject);
+})
+
+AppRegistry.registerComponent('MyFirstProject', () => Tableless);
+
