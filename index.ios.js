@@ -10,6 +10,7 @@ var {
   TouchableHighlight,
   AlertIOS,
   TextInput,
+  NavigatorIOS,
 } = React;
 
 var Tableless = React.createClass({
@@ -18,6 +19,14 @@ var Tableless = React.createClass({
     return {
       myText : "Hello, Tableless!"
     };
+  },
+
+  callNextScreen: function (inputText) {
+    this.props.navigator.push({
+      title: "The Next Screen",
+      component: NextScreen,
+      passProps: { 'inputText': inputText }
+    });
   },
 
   textInputDidChange : function (event) {
@@ -29,7 +38,8 @@ var Tableless = React.createClass({
       <View style={styles.container} >
         <TextInput style = {{ height: 50, padding: 6, fontSize: 16, borderColor: "lightblue", borderWidth: 1, margin: 10, borderRadius: 4 }}
                    placeholder="Type something..."
-                   onChange={this.textInputDidChange} />
+                   onChange={this.textInputDidChange}
+                   onEndEditing={ event => this.callNextScreen(event.nativeEvent.text) } />
         <Text style={styles.myText}>
           {this.state.myText}
         </Text>
@@ -45,6 +55,33 @@ var Tableless = React.createClass({
     );
   }
 });
+
+var MainNav = React.createClass({
+  render: function() {
+    return (
+      <NavigatorIOS
+        initialRoute={{
+          component: Tableless,
+          title: 'MyFirstProject'
+        }}
+        style={{ flex: 1 }} />
+    );
+  }
+});
+
+var NextScreen = React.createClass({
+  render: function() {
+    return (
+      <View style = {{ backgroundColor: 'green', flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+        <Text style = {{ color: '#fff', fontSize: 22 }} >
+          You entered: {this.props.inputText}
+        </Text>
+      </View>
+    );
+  }
+});
+
+
 
 var styles = StyleSheet.create({
 
@@ -71,5 +108,4 @@ var styles = StyleSheet.create({
 
 })
 
-AppRegistry.registerComponent('MyFirstProject', () => Tableless);
-
+AppRegistry.registerComponent('MyFirstProject', () => MainNav);
